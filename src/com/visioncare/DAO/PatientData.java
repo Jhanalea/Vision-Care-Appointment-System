@@ -1,0 +1,60 @@
+package com.visioncare.DAO;
+
+import com.visioncare.model.Patient;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class PatientData implements PatientDAOInterface {
+    DBConnection dbConnection;
+
+    @Override
+    public void createPatient(Patient patient) {
+        try {
+            dbConnection = new DBConnection();
+            int patient_id;
+            dbConnection.update("INSERT INTO patients (first_name,last_name,tel_num,email_address) VALUES ('" + patient.getFirstName() + "','" + patient.getLastName() + "','" + patient.getPhoneNumber() + "','" + patient.getEmailAddress() + "')");
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(PatientData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    @Override
+    public void updatePatient(Patient patient) {
+        try {
+            dbConnection = new DBConnection();
+            dbConnection.update("UPDATE patients SET first_name = '" + patient.getFirstName() + "',last_name = '" + patient.getLastName() + "',tel_num = '" + patient.getPhoneNumber() + "',email_address = '" + patient.getEmailAddress() + "' WHERE patient_id = '" + patient.getPatientID() + "'");
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(PatientData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void deletePatient(Patient patient) {
+        try {
+            dbConnection = new DBConnection();
+            dbConnection.update("Delete FROM patients WHERE patient_id = '" + patient.getPatientID() + "'");
+        } catch(SQLException ex) {
+            Logger.getLogger(PatientData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public ResultSet loadPatients() throws SQLException {
+        dbConnection = new DBConnection();
+        return dbConnection.retrieve("Select * FROM patients");
+    }
+
+
+    public ResultSet loadPatientDetails(String patientID) throws SQLException {
+        dbConnection = new DBConnection();
+        return dbConnection.retrieve("Select * FROM patients WHERE patient_id = '" + patientID + "'");
+    }
+
+
+}
+
