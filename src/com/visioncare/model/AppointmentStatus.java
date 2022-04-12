@@ -1,15 +1,15 @@
 package com.visioncare.model;
 
 public enum AppointmentStatus {
-    Upcoming, Completed, Missed;
+    Upcoming("Upcoming"), Completed("Completed"), Missed("Missed");
 
-    private AppointmentStatus(){}
+    private final String appt_status;
 
-    public String value(){
-        return name();
+    AppointmentStatus(String appt_status) {
+        this.appt_status = appt_status;
     }
 
-    public static AppointmentStatus fromvalue(String v){
-        return valueOf(v);
-    }
+    public String AppointmentStatus() { return appt_status; }
+
+    @Override public String toString() { return appt_status; }
 }

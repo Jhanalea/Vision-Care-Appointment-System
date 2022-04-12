@@ -47,7 +47,8 @@ public class AppointmentData implements AppointmentDAOInterface {
     public void createAppointment(Appointment appointment) {
         try {
             dBConnection = new DBConnection();
-            dBConnection.update("INSERT INTO appointments (patient_id,appt_date,appt_time,appt_status) VALUES ('" + appointment.getPatient().getPatientID() + "','" + appointment.getAppointmentDate() + "','" + appointment.getAppointmentTime() + "','" + appointment.getAppointmentStatus() + "')");
+            dBConnection.update("INSERT INTO appointments (patient_id,appt_date,appt_time,appt_status) VALUES ('" + appointment.getAppointmentPatient().getPatientID() + "','" + appointment.getAppointmentDate() + "','" + appointment.getAppointmentTime() + "','" + appointment.getAppointmentStatus() + "')");
+            dBConnection.closeConnection();
         } catch(SQLException ex) {
             Logger.getLogger(PatientData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -58,6 +59,7 @@ public class AppointmentData implements AppointmentDAOInterface {
         try {
             dBConnection = new DBConnection();
             dBConnection.update("Delete FROM appointments WHERE id = '" + appointmentID + "'");
+            dBConnection.closeConnection();
         } catch(SQLException ex) {
             Logger.getLogger(PatientData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,6 +70,7 @@ public class AppointmentData implements AppointmentDAOInterface {
         try {
             dBConnection = new DBConnection();
             dBConnection.update("UPDATE appointments SET appt_date ='" + appointment.getAppointmentDate() + "',appt_time='" + appointment.getAppointmentTime() + "',appt_status='" + appointment.getAppointmentStatus() +"' WHERE appt_id = '"+appointment.getAppointmentID()+"'");
+            dBConnection.closeConnection();
         }
         catch (SQLException ex) {
             Logger.getLogger(PatientData.class.getName()).log(Level.SEVERE, null, ex);

@@ -17,6 +17,7 @@ public class DBConnection {
             statement = connect.createStatement();
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS patients (patient_id integer PRIMARY KEY AUTOINCREMENT, first_name text NOT NULL, last_name text NOT NULL, tel_num text NOT NULL, email_address text NOT NULL)");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS appointments(appt_id integer PRIMARY KEY AUTOINCREMENT, appt_date text NOT NULL, appt_time text NOT NULL, appt_status text NOT NULL,patient_id integer, FOREIGN KEY(patient_id) REFERENCES patients(patient_id))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS user_data(id integer PRIMARY KEY AUTOINCREMENT, user_fullname text NOT NULL,user_email text NOT NULL, login_id text NOT NULL, password text NOT NULL, secret_question text NOT NULL,secret_answer text NOT NULL)");
         }
         catch(ClassNotFoundException CNFE) {
             CNFE.printStackTrace();

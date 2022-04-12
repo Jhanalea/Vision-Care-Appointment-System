@@ -1,4 +1,4 @@
-package com.visioncare.view;
+package com.visioncare.main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,12 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class PatientView extends Application {
+public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("PatientView.fxml"));
-        primaryStage.setTitle("Patients");
+        Parent root = FXMLLoader.load(getClass().getResource("../view/AppointmentView.fxml"));
+        primaryStage.setTitle("Vision Care Patient Management System");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
