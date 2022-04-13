@@ -49,7 +49,8 @@ public class AppFrameController implements Initializable {
             AnchorPane view = FXMLLoader.load(getClass().getResource("../view/AppointmentView.fxml"));
             bp_frame.setCenter(view);
         } else if(event.getSource().equals(btn_reports)) {
-            //
+            AnchorPane view = FXMLLoader.load(getClass().getResource("../view/GenerateReportView.fxml"));
+            bp_frame.setCenter(view);
         } else if(event.getSource().equals(btn_user_settings)) {
             //
         }
