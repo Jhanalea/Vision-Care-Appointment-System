@@ -89,5 +89,16 @@ public class AppointmentData implements AppointmentDAOInterface {
         return true;
     }
 
+    public ResultSet thisWeek() throws SQLException {
+        dBConnection = new DBConnection();
+        return dBConnection.retrieve("SELECT patients.first_name first_name ,patients.last_name last_name , appointments.appt_date appt_date , appointments.appt_time appt_time FROM patients,appointments WHERE patients.patient_id = appointments.patient_id AND appt_date = '04/13/22' OR appt_date = '04/14/22' OR appt_date = '04/15/22' OR appt_date = '04/16/22'  ORDER BY appt_id");
+    }
+
+    public ResultSet missedAppts() throws SQLException {
+        dBConnection = new DBConnection();
+        return dBConnection.retrieve("SELECT patients.first_name first_name ,patients.last_name last_name , appointments.appt_date appt_date , appointments.appt_time appt_time FROM patients,appointments WHERE patients.patient_id = appointments.patient_id AND appt_status = 'Missed' ORDER BY appt_id");
+    }
+
+
 
 }

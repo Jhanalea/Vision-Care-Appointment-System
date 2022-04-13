@@ -95,6 +95,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         cbox_secret_ques.getItems().addAll(SecretQuestions.values());
         cbox_secret_ques_reset.getItems().addAll(SecretQuestions.values());
         // TO DO

@@ -138,6 +138,40 @@ public class AppointmentService implements AppointmentServiceInterface{
         return appointmentList;
     }
 
+    public List<Appointment> listThisWeek() throws SQLException {
+        appointmentData = new AppointmentData();
+
+        ResultSet rs = appointmentData.thisWeek();
+        List<Appointment> appointmentList = new ArrayList<>();
+
+        while (rs.next()) {
+            Appointment appointment = new Appointment();
+            appointment.getAppointmentPatient().setFirstName(rs.getString("first_name"));
+            appointment.getAppointmentPatient().setLastName(rs.getString("last_name"));
+            appointment.setAppointmentDate(rs.getString("appt_date"));
+            appointment.setAppointmentTime(rs.getString("appt_time"));
+            appointmentList.add(appointment);
+        }
+        return appointmentList;
+    }
+
+    public List<Appointment> listMissedAppointments() throws SQLException {
+        appointmentData = new AppointmentData();
+
+        ResultSet rs = appointmentData.missedAppts();
+        List<Appointment> appointmentList = new ArrayList<>();
+
+        while (rs.next()) {
+            Appointment appointment = new Appointment();
+            appointment.getAppointmentPatient().setFirstName(rs.getString("first_name"));
+            appointment.getAppointmentPatient().setLastName(rs.getString("last_name"));
+            appointment.setAppointmentDate(rs.getString("appt_date"));
+            appointment.setAppointmentTime(rs.getString("appt_time"));
+            appointmentList.add(appointment);
+        }
+        return appointmentList;
+    }
+
     public boolean duplicateAppointment(Appointment appointment){
         appointmentData = new AppointmentData();
         if (appointmentData.duplicateAppointment(appointment)){

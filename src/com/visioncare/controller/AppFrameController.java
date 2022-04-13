@@ -35,12 +35,19 @@ public class AppFrameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TO DO
+        AnchorPane view = null;
+        try {
+            view = FXMLLoader.load(getClass().getResource("../view/DashboardView.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        bp_frame.setCenter(view);
     }
     @FXML
     void handleButtonAction(ActionEvent event) throws IOException, SQLException {
         if(event.getSource().equals(btn_dashboard)){
-            //
+            AnchorPane view = FXMLLoader.load(getClass().getResource("../view/DashboardView.fxml"));
+            bp_frame.setCenter(view);
         } else if(event.getSource().equals(btn_patients)) {
             AnchorPane view = FXMLLoader.load(getClass().getResource("../view/PatientView.fxml"));
             bp_frame.setCenter(view);
@@ -52,7 +59,8 @@ public class AppFrameController implements Initializable {
             AnchorPane view = FXMLLoader.load(getClass().getResource("../view/GenerateReportView.fxml"));
             bp_frame.setCenter(view);
         } else if(event.getSource().equals(btn_user_settings)) {
-            //
+            AnchorPane view = FXMLLoader.load(getClass().getResource("../view/UserSettingsView.fxml"));
+            bp_frame.setCenter(view);
         }
     }
 

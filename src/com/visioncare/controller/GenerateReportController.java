@@ -9,6 +9,7 @@ import com.visioncare.service.PatientService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 
 import java.io.FileNotFoundException;
@@ -129,6 +130,12 @@ public class GenerateReportController implements Initializable {
 
         report.add(table);
         report.close();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("File Downloaded");
+        alert.setHeaderText("Report Saved Locally");
+        alert.setContentText("Report has been successfully downloaded to your machine.");
+        alert.showAndWait();
 
     }
     @FXML
