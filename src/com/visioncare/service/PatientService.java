@@ -30,6 +30,7 @@ public class PatientService implements PatientServiceInterface {
         patientData = new PatientData();
         patientData.deletePatient(patient);
     }
+
     public boolean duplicatePatient(Patient patient){
         patientData = new PatientData();
         if (patientData.duplicatePatient(patient)){

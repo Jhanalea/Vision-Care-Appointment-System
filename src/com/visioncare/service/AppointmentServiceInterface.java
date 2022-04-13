@@ -4,10 +4,10 @@ import com.visioncare.model.Appointment;
 import java.util.List;
 
 public interface AppointmentServiceInterface {
-    void createAppointment(Appointment appointment,String subject);
+    void createAppointment(Appointment appointment);
 
-    void deleteAppointment(List<String> appointmentIDs);
+    void deleteAppointment(Appointment appointment);
 
-    void updateAppointment(Appointment appointment,String subject);
+    void updateAppointment(Appointment appointment);
 
 }

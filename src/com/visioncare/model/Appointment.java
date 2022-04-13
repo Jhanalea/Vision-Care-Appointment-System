@@ -11,10 +11,11 @@ public class Appointment {
 
 
     private final IntegerProperty appointmentID = new SimpleIntegerProperty();
-    private final ObjectProperty<Date> appointmentDate = new SimpleObjectProperty<>(this, "appointmentDate");
+    private final StringProperty appointmentDate = new SimpleStringProperty();
     private final StringProperty appointmentTime = new SimpleStringProperty();
     private final StringProperty appointmentStatus = new SimpleStringProperty();
-    private final ObjectProperty<Patient> appointmentPatient = new SimpleObjectProperty<>(this, "appointmentPatient");
+    private final ObjectProperty<Patient> appointmentPatient = new SimpleObjectProperty<>(new Patient());
+
 
     public int getAppointmentID() {
         return appointmentID.get();
@@ -28,15 +29,15 @@ public class Appointment {
         this.appointmentID.set(appointmentID);
     }
 
-    public Date getAppointmentDate() {
+    public String getAppointmentDate() {
         return appointmentDate.get();
     }
 
-    public ObjectProperty<Date> appointmentDateProperty() {
+    public StringProperty appointmentDateProperty() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(Date appointmentDate) {
+    public void setAppointmentDate(String appointmentDate) {
         this.appointmentDate.set(appointmentDate);
     }
 
@@ -72,8 +73,8 @@ public class Appointment {
         return appointmentPatient;
     }
 
-    public void setAppointmentPatient(Patient appointmentPatient) {
-        this.appointmentPatient.set(appointmentPatient);
+    public void setAppointmentPatient(Patient patient) {
+        this.appointmentPatient.set(patient);
     }
 }
 

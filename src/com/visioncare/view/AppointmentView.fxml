@@ -18,12 +18,13 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.visioncare.controller.AppointmentController">
    <AnchorPane prefHeight="620.0" prefWidth="970.0" style="-fx-background-color: #ffffff;">
       <children>
-         <TableView fx:id="appointment_table" layoutX="31.0" layoutY="199.0" onMouseClicked="#handleMouseAction" prefHeight="411.0" prefWidth="903.0" stylesheets="@../css/styling.css">
+         <TableView fx:id="appointment_table" layoutX="33.0" layoutY="215.0" onMouseClicked="#handleMouseAction" prefHeight="400.0" prefWidth="898.0" stylesheets="@../css/styling.css">
             <columns>
                <TableColumn fx:id="col_appt_id" prefWidth="124.18646240234375" text="Appt ID" />
                <TableColumn fx:id="col_first_name" prefWidth="136.14657592773438" text="First Name" />
-               <TableColumn fx:id="col_last_name" prefWidth="223.85345458984375" text="Last Name" />
-               <TableColumn fx:id="col_appt_date" prefWidth="136.8330078125" text="Date" />
+               <TableColumn fx:id="col_last_name" prefWidth="148.79656982421875" text="Last Name" />
+               <TableColumn fx:id="col_email_address" prefWidth="148.79656982421875" text="Email Address" />
+               <TableColumn fx:id="col_appt_date" prefWidth="151.20352172851562" text="Date" />
                <TableColumn fx:id="col_appt_time" prefWidth="168.6668701171875" text="Time" />
                <TableColumn fx:id="col_appt_status" prefWidth="168.6668701171875" text="Status" />
             </columns>
@@ -31,65 +32,9 @@
                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
          </TableView>
-         <HBox alignment="BOTTOM_LEFT" layoutX="30.0" layoutY="49.0" prefHeight="62.0" prefWidth="885.0" spacing="22.0">
+         <HBox layoutX="35.0" layoutY="141.0" prefHeight="28.0" prefWidth="900.0" spacing="10.0">
             <children>
-               <Label text="Appt ID" textFill="#52438f">
-                  <font>
-                     <Font name="Open Sans" size="11.0" />
-                  </font>
-               </Label>
-               <Label text="First Name" textFill="#52438f">
-                  <font>
-                     <Font name="Open Sans" size="11.0" />
-                  </font>
-               </Label>
-               <Label prefHeight="14.0" text="Last Name" textFill="#52438f">
-                  <font>
-                     <Font name="Open Sans" size="11.0" />
-                  </font>
-                  <padding>
-                     <Insets left="21.0" />
-                  </padding>
-               </Label>
-               <Label text="Date" textFill="#52438f">
-                  <font>
-                     <Font name="Open Sans" size="11.0" />
-                  </font>
-                  <padding>
-                     <Insets left="20.0" />
-                  </padding>
-               </Label>
-               <Label text="Time" textFill="#52438f">
-                  <font>
-                     <Font name="Open Sans" size="11.0" />
-                  </font>
-                  <padding>
-                     <Insets left="78.0" />
-                  </padding>
-               </Label>
-               <Label layoutX="406.0" layoutY="56.0" text="Status" textFill="#52438f">
-                  <font>
-                     <Font name="Open Sans" size="11.0" />
-                  </font>
-                  <padding>
-                     <Insets left="69.0" />
-                  </padding>
-               </Label>
-            </children>
-         </HBox>
-         <HBox layoutX="31.0" layoutY="115.0" prefHeight="28.0" prefWidth="900.0" spacing="10.0">
-            <children>
-               <TextField fx:id="tf_appt_id" editable="false" opacity="0.3" prefHeight="26.0" prefWidth="120.0">
-                  <font>
-                     <Font name="Open Sans Light" size="12.0" />
-                  </font>
-               </TextField>
-               <TextField fx:id="tf_patient_fname" prefHeight="26.0" prefWidth="160.0">
-                  <font>
-                     <Font name="Open Sans Light" size="12.0" />
-                  </font>
-               </TextField>
-               <TextField fx:id="tf_patient_lname" prefHeight="26.0" prefWidth="160.0">
+               <TextField fx:id="tf_appt_id" editable="false" opacity="0.5" prefHeight="26.0" prefWidth="120.0">
                   <font>
                      <Font name="Open Sans Light" size="12.0" />
                   </font>
@@ -102,7 +47,7 @@
                      <Font name="Open Sans" size="11.0" />
                   </font>
                </Button>
-               <Button fx:id="btn_edit_appt" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="160.0" styleClass="button2" stylesheets="@../css/styling.css" text="Reschedule" textFill="#52438f">
+               <Button fx:id="btn_edit_appt" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="160.0" styleClass="button2" stylesheets="@../css/styling.css" text="Update" textFill="#52438f">
                   <font>
                      <Font name="Open Sans" size="11.0" />
                   </font>
@@ -123,33 +68,110 @@
             </padding>
          </Label>
          <Separator layoutX="29.0" layoutY="47.0" prefHeight="23.0" prefWidth="907.0" />
-         <Button fx:id="btn_clear_fields" layoutX="847.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="83.0" styleClass="button3" stylesheets="@../css/styling.css" text=" Clear Fields" textFill="WHITE">
+         <Button fx:id="btn_clear_fields" layoutX="847.0" layoutY="179.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="83.0" styleClass="button3" stylesheets="@../css/styling.css" text=" Clear Fields" textFill="WHITE">
             <font>
                <Font name="Open Sans" size="11.0" />
             </font>
          </Button>
-         <Label layoutX="454.0" layoutY="169.0" text="Search Appointments:" textFill="#52438f">
+         <Label layoutX="454.0" layoutY="184.0" text="Search Appointments:" textFill="#52438f">
             <font>
                <Font name="Open Sans Bold" size="11.0" />
             </font>
          </Label>
-         <TextField fx:id="tf_search_bar" layoutX="581.0" layoutY="164.0" prefHeight="26.0" prefWidth="258.0" promptText="Keywords...">
+         <TextField fx:id="tf_search_bar" layoutX="581.0" layoutY="179.0" prefHeight="26.0" prefWidth="258.0" promptText="Keywords...">
             <font>
                <Font name="Open Sans Light" size="12.0" />
             </font>
          </TextField>
-         <Button fx:id="btn_send_email" layoutX="33.0" layoutY="165.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="200.0" styleClass="button3" stylesheets="@../css/styling.css" text="Send Email Reminder" textFill="WHITE">
-            <font>
-               <Font name="Open Sans" size="11.0" />
-            </font>
-            <graphic>
-               <ImageView fitHeight="150.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../icons/email_icon.png" />
-                  </image>
-               </ImageView>
-            </graphic>
-         </Button>
+         <HBox alignment="BOTTOM_LEFT" layoutX="36.0" layoutY="76.0" prefHeight="62.0" prefWidth="885.0" spacing="29.0">
+            <children>
+               <Label text="Appt ID" textFill="#52438f">
+                  <font>
+                     <Font name="Open Sans" size="11.0" />
+                  </font>
+               </Label>
+               <Label text="Date" textFill="#52438f">
+                  <font>
+                     <Font name="Open Sans" size="11.0" />
+                  </font>
+                  <padding>
+                     <Insets left="20.0" />
+                  </padding>
+               </Label>
+               <Label text="Time" textFill="#52438f">
+                  <font>
+                     <Font name="Open Sans" size="11.0" />
+                  </font>
+                  <padding>
+                     <Insets left="98.0" />
+                  </padding>
+               </Label>
+               <Label layoutX="406.0" layoutY="56.0" text="Status" textFill="#52438f">
+                  <font>
+                     <Font name="Open Sans" size="11.0" />
+                  </font>
+                  <padding>
+                     <Insets left="91.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
+         <HBox layoutX="31.0" layoutY="89.0" prefHeight="28.0" prefWidth="900.0" spacing="10.0">
+            <children>
+               <TextField fx:id="tf_patient_email" prefHeight="26.0" prefWidth="160.0">
+                  <font>
+                     <Font name="Open Sans Light" size="12.0" />
+                  </font>
+               </TextField>
+               <TextField fx:id="tf_patient_fname" editable="false" layoutX="10.0" layoutY="10.0" opacity="0.5" prefHeight="26.0" prefWidth="160.0">
+                  <font>
+                     <Font name="Open Sans Light" size="12.0" />
+                  </font>
+               </TextField>
+               <TextField fx:id="tf_patient_lname" editable="false" layoutX="180.0" layoutY="10.0" opacity="0.5" prefHeight="26.0" prefWidth="160.0">
+                  <font>
+                     <Font name="Open Sans Light" size="12.0" />
+                  </font>
+               </TextField>
+               <Button fx:id="btn_send_email" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="200.0" styleClass="button3" stylesheets="@../css/styling.css" text="Send Email Reminder" textFill="WHITE">
+                  <font>
+                     <Font name="Open Sans" size="11.0" />
+                  </font>
+                  <graphic>
+                     <ImageView fitHeight="150.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../icons/email_icon.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+            </children>
+         </HBox>
+         <HBox alignment="BOTTOM_LEFT" layoutX="32.0" layoutY="24.0" prefHeight="62.0" prefWidth="885.0" spacing="39.0">
+            <children>
+               <Label text="Patient Email Address" textFill="#52438f">
+                  <font>
+                     <Font name="Open Sans" size="11.0" />
+                  </font>
+               </Label>
+               <Label prefHeight="14.0" text="First Name" textFill="#52438f">
+                  <font>
+                     <Font name="Open Sans" size="11.0" />
+                  </font>
+                  <padding>
+                     <Insets left="21.0" />
+                  </padding>
+               </Label>
+               <Label text="Last Name" textFill="#52438f">
+                  <font>
+                     <Font name="Open Sans" size="11.0" />
+                  </font>
+                  <padding>
+                     <Insets left="72.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
       </children>
    </AnchorPane>
 </AnchorPane>

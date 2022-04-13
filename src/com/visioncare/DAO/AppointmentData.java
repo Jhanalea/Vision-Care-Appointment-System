@@ -1,6 +1,7 @@
 package com.visioncare.DAO;
 
 import com.visioncare.model.Appointment;
+import com.visioncare.model.Patient;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,12 +25,7 @@ public class AppointmentData implements AppointmentDAOInterface {
 
     public ResultSet listAppointment() throws SQLException {
         dBConnection = new DBConnection();
-        return dBConnection.retrieve("Select patients.patient_id patient_id , patients.first_name first_name ,patients.last_name last_name , "
-                + " patients.email_address email_address, patients.tel_num tel_num,"
-                + " appointments.appt_id appt_id , appointments.appt_date appt_date , appointments.appt_time appt_time, appointments.appt_status appt_status "
-                + " FROM patients,appointments"
-                + " WHERE patients.patient_id = appointments.patient_id "
-                + "ORDER BY appt_id");
+        return dBConnection.retrieve("SELECT appointments.appt_id appt_id , patients.first_name first_name ,patients.last_name last_name , patients.email_address email_address, appointments.appt_date appt_date , appointments.appt_time appt_time, appointments.appt_status appt_status FROM patients,appointments WHERE patients.patient_id = appointments.patient_id ORDER BY appt_id");
     }
 
     public ResultSet loadSelectedAppointment(String patientID,String appointmentID) throws SQLException {
@@ -55,10 +51,10 @@ public class AppointmentData implements AppointmentDAOInterface {
     }
 
     @Override
-    public void deleteAppointment(String appointmentID) {
+    public void deleteAppointment(Appointment appointment) {
         try {
             dBConnection = new DBConnection();
-            dBConnection.update("Delete FROM appointments WHERE id = '" + appointmentID + "'");
+            dBConnection.update("Delete FROM appointments WHERE appt_id = '" + appointment.getAppointmentID() + "'");
             dBConnection.closeConnection();
         } catch(SQLException ex) {
             Logger.getLogger(PatientData.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,5 +72,22 @@ public class AppointmentData implements AppointmentDAOInterface {
             Logger.getLogger(PatientData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public boolean duplicateAppointment(Appointment appointment){
+        try {
+            dBConnection = new DBConnection();
+            ResultSet result = dBConnection.retrieve("SELECT COUNT(*) from appointments WHERE appt_date='" + appointment.getAppointmentDate() + "' AND appt_time ='" + appointment.getAppointmentTime() + "' ");
+            int count = result.getInt(1);
+            dBConnection.closeConnection();
+            if (count >= 1){
+                return false;
+            }
+
+        } catch(SQLException ex) {
+            Logger.getLogger(AppointmentData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+
 
 }

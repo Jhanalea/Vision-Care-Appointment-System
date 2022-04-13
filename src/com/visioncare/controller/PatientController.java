@@ -140,6 +140,7 @@ public class PatientController implements Initializable {
 
     }
 
+
     public void clearTextFields() {
         tf_patient_id.clear();
         tf_first_name.clear();
@@ -163,12 +164,9 @@ public class PatientController implements Initializable {
         col_tel_num.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
         col_email_address.setCellValueFactory(cellData -> cellData.getValue().emailAddressProperty());
 
-        //patient_table.setItems(observableListOfPatient);
-
         // TABLE SEARCH FUNCTION
 
         FilteredList<Patient> filteredPatients = new FilteredList<>(observableListOfPatient, b ->true);
-        //Patient patient = new Patient();
 
         tf_search_bar.textProperty().addListener((observable, oldValue, newValue) ->
 

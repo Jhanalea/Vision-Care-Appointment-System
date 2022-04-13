@@ -3,7 +3,7 @@ import com.visioncare.model.Appointment;
 
 public interface AppointmentDAOInterface {
         void createAppointment(Appointment appointment);
-        void deleteAppointment(String appointmentId);
+        void deleteAppointment(Appointment appointment);
         void updateAppointment(Appointment appointment);
 
 }
